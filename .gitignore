@@ -1,0 +1,42 @@
+# ===== FICHIERS SENSIBLES =====
+*.zip
+*.7z
+*.rar
+*.tar.gz
+
+# Images disque / mémoire (trop lourds + sensibles)
+*.dd
+*.img
+*.raw
+*.vmem
+*.dmp
+*.mem
+*.E01
+*.ex01
+
+# Malwares et samples (NE JAMAIS pusher sur GitHub)
+samples/
+malware/
+*.exe
+*.dll
+*.ps1
+*.vbs
+*.bat
+*.sh
+
+# ===== OUTILS =====
+tools/bin/
+*.iso
+
+# ===== DONNÉES PERSONNELLES =====
+*.pcap
+*.pcapng
+creds/
+passwords/
+*.log
+
+# ===== IDE / OS =====
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
