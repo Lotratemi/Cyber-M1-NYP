@@ -1,0 +1,33 @@
+!This program cannot be run in DOS mode.
+.text
+0@.bss
+$@%@
+$0*@
+[^_]
+$AP@
+$dP@
+$*Q@
+[^_]
+[Ent
+[DEL
+[Ech
+UWVS
+D$Xt)
+$hT@
+0[^_
+$4U@
+UWVS
+8MZt
+B' t
+libgcc_s_dw2-1.dll
+Argument domain error (DOMAIN)
+Address %p has no image-section
+  Unknown pseudo relocation bit size %d.
+NSt6thread10_Impl_baseE
+zPLR
+zPLR
+zPLR
+_ZN10QArrayData10deallocateEPS_jj
+_ZN9QSettings8setValueERK7QStringRK8QVariant
+_ZN9QSettingsC1ERK7QStringNS_6FormatEP7QObject
+_ZN9QSettingsD1Ev
