@@ -1,0 +1,5 @@
+Image disque bit-à-bit réalisée : Une acquisition forensique complète du disque physique (\\.\PHYSICALDRIVE0) a été réalisée avec Exterro FTK Imager 8.3.0.27, au format E01. La vérification post-acquisition confirme une correspondance exacte entre les hashs MD5 (430616773ba24d5e5995356154c81989) et SHA1 (05062a70589ee739dfb63d8785a3e45106dd029b) calculés et attendus, sans bloc défectueux, garantissant l'intégrité de la copie.
+
+Outils utilisés : Exterro FTK Imager 8.3.0.27 (Free), pour l'acquisition et le montage en lecture seule de l'image.
+
+Fichiers suspects identifiés : L'exploration de l'image montée a permis de localiser les exécutables Env.exe (53 248 octets) et Res.exe (25 088 octets), précédemment détectés par Windows Defender (Trojan:Win32/Malgent!MSR), dans le dossier Users\DD\AppData\Local\Temp\...\Malware-main\VIRUS, accompagnés de plusieurs DLL Qt et MinGW liées à leur exécution.
