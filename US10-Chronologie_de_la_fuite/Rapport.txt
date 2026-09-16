@@ -1,0 +1,7 @@
+Horodatages exploitables et chronologie des événements : L'exploitation de la clé USBSTOR de la ruche SYSTEM fournit une chronologie précise de l'utilisation de la clé SanDisk Cruzer Blade (numéro de série 4C530000281008116284&0) le 03/02/2020 :
+
+Première installation : 12:12:32
+Dernière connexion : 12:44:21
+Dernier retrait : 12:45:00
+
+Ces horodatages délimitent une fenêtre d'utilisation d'environ 32 minutes le même jour, permettant de vérifier la concordance de cette activité avec les dates supposées de fuite de données.
