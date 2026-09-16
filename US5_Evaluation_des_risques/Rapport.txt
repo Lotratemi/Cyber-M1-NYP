@@ -1,0 +1,182 @@
+==================================================================
+EVALUATION DES RISQUES - MALWARE KEYLOGGER "WINDSYST"
+==================================================================
+Date de l'analyse    : 16/9/2026
+Analyste              : Nicolas-Yohan-Philippe
+Environnement d'analyse : VM isolée (réseau host-only / interne)
+Outils utilisés       : Procmon, TCPView, Process Explorer, Wireshark
+
+------------------------------------------------------------------
+1. DESCRIPTION TECHNIQUE DU MALWARE
+------------------------------------------------------------------
+Le binaire analysé est un keylogger et installeur malveillant
+développé avec le framework Qt.
+
+Comportement observé :
+- Masque sa fenêtre console (ShowWindow) dès l'exécution
+- Routine d'installation (sub_401aa0) :
+    * Création du répertoire C:\WindSyst
+    * Copie de plusieurs DLLs et de deux exécutables
+      (Res.exe et Env.exe) via XCOPY
+
+- Thread en arrière-plan (sub_401640) :
+    * Capture des frappes clavier via GetAsyncKeyState
+    * Traduction en chaînes lisibles (sub_401ed0)
+    * Écriture des données capturées dans C:\WindSyst\log.txt
+
+Je n'ai pas trouvé de 
+    * Persistance via la clé de registre
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+      (entrées nommées "Res" et "Env")
+
+Résultat de la capture réseau (Wireshark) :
+- Aucune tentative d'exfiltration réseau constatée durant la
+  période d'observation (10-15 min, activité clavier générée)
+- Les données capturées semblent rester stockées localement
+  dans log.txt, sans transmission externe identifiée
+
+------------------------------------------------------------------
+2. INDICATEURS DE COMPROMISSION (IOC)
+------------------------------------------------------------------
+- Répertoire      : C:\WindSyst
+- Fichier de log  : C:\WindSyst\log.txt
+
+Je n'ai pas trouvé de clé de registre auxquelles je m'attendais du type:
+- Clé de registre : HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+    - Valeur "Res" -> C:\WindSyst\Res.exe
+    - Valeur "Env" -> C:\WindSyst\Env.exe
+
+------------------------------------------------------------------
+3. DESCRIPTION DES IMPACTS
+------------------------------------------------------------------
+| Critère         | Impact                                        |
+|-----------------|-----------------------------------------------|
+| Confidentialité | Capture de toutes les frappes clavier         |
+|                  | (identifiants, mots de passe, données        |
+|                  | sensibles) stockées en clair dans log.txt    |
+|-----------------|-----------------------------------------------|
+| Intégrité       | Modification du                               |
+|                  | système de fichiers (création de répertoire, |
+|                  | copie de binaires et DLLs)                   |
+|-----------------|-----------------------------------------------|
+| Disponibilité   | Impact direct faible - le malware ne perturbe |
+|                  | pas le fonctionnement normal du poste        |
+|-----------------|-----------------------------------------------|
+| Traçabilité     | Fenêtre cachée limite la détection visuelle   |
+|                  | immédiate par l'utilisateur                  |
+|-----------------|-----------------------------------------------|
+| Conformité      | Si données personnelles capturées, exposition |
+|                  | potentielle au RGPD (traitement illicite)    |
+|-----------------|-----------------------------------------------|
+| Rebond          | Absence d'exfiltration réseau confirmée =     |
+|                  | risque de rebond automatisé limité, mais     |
+|                  | risque de vol par accès physique ultérieur au|
+|                  | fichier log.txt (clé USB, accès manuel local)|
+
+------------------------------------------------------------------
+4. NIVEAU DE RISQUE
+------------------------------------------------------------------
+Probabilité d'exploitation : ELEVEE
+  - Persistance active dès l'exécution
+  - Double mécanisme de persistance (Res + Env)
+  - Aucune interaction utilisateur requise après l'infection
+
+Gravité : MOYENNE
+  - Pas d'exfiltration réseau automatique constatée
+    (réduit le risque de fuite immédiate à grande échelle)
+  - Mais capture large de données sensibles en clair, exploitable
+    en cas d'accès physique ou de récupération manuelle du fichier
+
+NIVEAU DE RISQUE GLOBAL : MOYEN A ELEVE
+  Justification : l'absence d'exfiltration réseau observée réduit
+  le risque de fuite externe immédiate, mais ne l'exclut pas
+  totalement (exfiltration différée non testée, second binaire
+  non analysé en détail - voir en annexe). Le risque de
+  compromission des identifiants reste réel en cas d'accès
+  physique ultérieur au poste ou de collecte manuelle du fichier de log.
+
+------------------------------------------------------------------
+5. RECOMMANDATIONS DE SECURITE
+------------------------------------------------------------------
+Détection :
+  - Déployer une règle EDR/antivirus basée sur les IOC identifiés
+    (chemin C:\WindSyst, fichier log.txt, clés de registre
+    Res/Env sous HKCU\...\Run)
+  - Mettre en place une surveillance des modifications de la clé
+    Run (Sysmon + règle SIEM, event ID 13)
+
+Eradication :
+  - Suppression du répertoire C:\WindSyst et de son contenu
+  
+  - Arrêt des processus associés (Res.exe, Env.exe)
+  - Scan complet du poste post-remédiation
+  - On aurait dû faire une suppression des clés de registre "Res" et "Env" s'il y en avait eu
+
+Remédiation utilisateur :
+  - Réinitialisation de tous les mots de passe saisis depuis
+    la date d'infection présumée (comptes locaux, messagerie,
+    VPN, applications métier)
+  - Activation du MFA (Multi Factor Authentication) sur les comptes concernés pour limiter
+    l'impact d'un éventuel vol d'identifiants
+
+Prévention :
+  - Restriction des droits d'écriture utilisateur vers la racine
+    C:\ (limiter la création de répertoires à la racine système)
+  - Filtrage/inspection du trafic réseau sortant pour détecter
+    une éventuelle exfiltration future (le malware pourrait être
+    mis à jour ou disposer d'un mode d'exfiltration différé non
+    déclenché durant l'analyse)
+  - Sensibilisation des utilisateurs (vecteur d'infection
+    probable : phishing / pièce jointe / téléchargement non
+    vérifié)
+
+Investigation complémentaire recommandée :
+  - Analyse statique comparative de Res.exe et Env.exe (hash,
+    strings, désassemblage) pour confirmer leur rôle exact
+  - Prolonger la capture réseau (24-48h) pour écarter une
+    exfiltration différée ou déclenchée par un événement
+    particulier (ex. connexion à un domaine spécifique)
+
+==================================================================
+ANNEXE - HYPOTHESE SUR LE ROLE DE RES.EXE ET ENV.EXE
+==================================================================
+Statut : HYPOTHESE NON CONFIRMEE - nécessite analyse statique
+complémentaire (comparaison de hash, strings, désassemblage)
+avant validation définitive.
+
+Constat :
+  - Deux exécutables distincts (Res.exe et Env.exe) sont copiés
+    ensemble lors de l'installation
+  - Les deux sont enregistrés en persistance via la même clé de
+    registre Run, sous deux valeurs différentes
+  - Aucune différenciation fonctionnelle n'a été observée à ce
+    stade de l'analyse
+
+Hypothèse retenue : mécanisme de redondance / watchdog mutuel
+  Res.exe et Env.exe seraient deux copies quasi-identiques du
+  même binaire malveillant (installeur/keylogger), dont le rôle
+  serait de se surveiller mutuellement et de se recréer l'un
+  l'autre en cas de suppression. Ce pattern est couramment
+  employé par les malwares pour complexifier la remédiation
+  manuelle : la suppression d'une seule des deux entrées de
+  persistance ne suffit pas à éradiquer le malware, l'autre
+  copie restaurant la première.
+
+Méthode de vérification proposée :
+  1. Comparer les empreintes (MD5/SHA256) de Res.exe et Env.exe
+     -> hashs identiques = confirme une copie strictement
+        identique du même binaire
+  2. Comparer la taille des fichiers et un extrait de strings
+  3. Désassembler rapidement les deux binaires pour repérer
+     d'éventuelles routines de surveillance croisée
+     (ex. vérification de présence de l'autre process/fichier)
+
+Hypothèses alternatives à ne pas exclure :
+  - Répartition fonctionnelle (ex. un binaire dédié à la capture
+    clavier, l'autre à la gestion de la persistance ou à une
+    future fonction d'exfiltration non encore activée)
+  - L'un des deux pourrait être un leurre ou un composant inerte
+
+==================================================================
+FIN DU RAPPORT
+==================================================================
