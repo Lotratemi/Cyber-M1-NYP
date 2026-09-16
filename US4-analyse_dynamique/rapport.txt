@@ -1,0 +1,8 @@
+Modifications système observées :
+L'analyse avec Process Monitor montre que le malware interagit directement avec le Registre Windows, notamment par l'ouverture et la modification de clés sous HKLM\System\CurrentControlSet et HKLM\SOFTWARE\Microsoft\Wow6432Node. L'exécution de requêtes comme RegSetInfoKey confirme une tentative d'altération ou d'inspection de la configuration du système hôte.
+
+Activités réseau identifiées :
+La capture de trafic effectuée en parallèle sur Wireshark n'a révélé aucun flux sortant ni requête DNS durant toute la phase d'exécution. Le binaire n'a initié aucune tentative de connexion vers un serveur de commande et contrôle (C2) externe.
+
+Création de fichiers / processus détectée :
+L'exécution a généré l'initialisation du processus principal Res.exe (PID 9248), suivi du chargement de plusieurs bibliothèques système 32-bits situées dans C:\Windows\SysWOW64. Plusieurs fichiers ont été créés.
