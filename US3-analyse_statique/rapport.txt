@@ -1,0 +1,8 @@
+Fonctions principales identifiées :
+Le binaire s'appuie sur le framework GUI Qt5Core.dll (notamment QSettings pour lire/écrire de la configuration) et des threads C++ (NSt6thread), suggérant un exécutable conçu pour persister ses configurations sur l'hôte et s'exécuter en arrière-plan.
+
+Chaînes, imports et sections analysées :
+L'exécutable contient des chaînes capturant des touches clavier (ex: [Ent, [DEL, [Ech), importe plusieurs DLLs C/C++ et Qt (QtCore5.dll, KERNEL32.dll, msvcrt.dll, libgcc_s_dw2-1.dll), et présente une structure de sections PE classique et cohérente (.text, .data, .rdata, .bss, .idata, etc.).
+
+Indicateurs de compromission (IoC) extraits :
+Les IoCs clés incluent le nom du binaire Res.exe, l'utilisation de la clé/fichier de registre QSettings pour la persistance, ainsi que la présence de chaînes typiques d'un Keylogger interceptant les entrées clavier utilisateur (ex: Entrée, Suppr, Échap).

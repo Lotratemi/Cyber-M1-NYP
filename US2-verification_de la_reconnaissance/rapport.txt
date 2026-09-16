@@ -2,3 +2,7 @@ Nom du fichier : Res.exe
 SHA256 : 49f091ade48890bfa22d2b455494be95e52392c478b67e10626222b6aee37e1e
 Statut : Connu
 Categorie : Espion
+
+---------------------------------------------------
+
+Afin de vérifier si le malware était déjà répertorié, nous avons d'abord calculé les empreintes cryptographiques du fichier suspect (MD5, SHA-256). Nous avons ensuite soumis ces hashs à des bases de connaissances sur les menaces comme VirusTotal, ce qui nous a permis de comparer le fichier aux données existantes et de confirmer sa présence dans les bases de signatures. Les résultats de détection ont enfin été documentés pour établir précisément le profil et la réputation du malware.
