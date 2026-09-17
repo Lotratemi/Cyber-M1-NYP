@@ -1,0 +1,94 @@
+========================================================================
+RAPPORT - ACQUISITION MEMOIRE VIVE
+========================================================================
+
+1. CONTEXTE
+------------------------------------------------------------------------
+Analyste            : Philippe
+Date                 : 16/09/2026
+Systeme analyse      : VM Windows (malware étudié : keylogger)
+
+
+2. ACQUISITION DU DUMP
+------------------------------------------------------------------------
+Outil utilise        : Magnet Capture RAM version 1.2.0
+Méthode   : 		MRC120.exe ->  Interface graphique -> génération du dump sur un fichier en dehors de la VM
+Taille du fichier dump      : 5.12Go
+Fichier obtenu       : RAM_DUMP.raw
+Statut               : Dump realise avec succès, complet et exploitable
+
+
+3. PROCESSUS IDENTIFIES
+------------------------------------------------------------------------
+Outil                : Volatility 3
+Commandes            : 
+		       vol.py -f RAM_DUMP.raw windows.pslist
+		       vol.py -f RAM_DUMP.raw windows.pstree
+
+
+--- Tableau des processus suspects identifies ---
+
+PID  | Nom du processus       | PID Parent | 
+-----|------------------------|------------|
+7236 | Res.exe                |1260        |
+8260 | conhost.exe            |7236        |
+5808 | xcopy.exe              |2332        |                                
+                            
+
+Processus suspect détecté :
+    - Nom            : Res.exe
+    - PID            : 7236
+    - PID Parent     : 1260
+
+Remarques: 
+    Exécution à 11h02 de Res.exe (1260) 
+     → cmd.exe (2332) : /c XCOPY libgcc_s_dw2-1.dll c:\WindSyst /S
+       → xcopy.exe (5808) : exécute la copie
+     → conhost.exe (8260) : juste la console associée à cmd.exe
+
+	XCOPY libgcc_s_dw2-1.dll c:\WindSyst /S
+	Copie le fichier libgcc_s_dw2-1.dll vers un dossier c:\WindSyst
+	Le nom WindSyst imite System32/Windows  → tentative de camouflage
+	libgcc_s_dw2-1.dll est une DLL qui est une dépendance du malware lui-même, copiée pour assurer sa persistance
+
+
+
+
+4. CONNEXIONS RESEAU
+------------------------------------------------------------------------
+Commande : vol.py -f RAM_DUMP.raw windows.netscan
+
+Pas de Connexion(s) suspecte(s) associee(s) a Res.exe :
+
+	Aucune connexion n'est directement associée à Res.exe (PID 1260/7236/10372) dans un extrait concernant l'heure (11h à 12h)
+	Par ailleurs, les processus présents sont des processus windows légitimes: SearchApp.exe (5920), svchost.exe (1972, 2948) et msedge.exe (11148).
+	
+	Seule une connexion à une IP aurait pu être suspectée:
+	svchost.exe (PID 2948) → connexion ESTABLISHED (donc active, pas fermée) vers 98.66.133.186:443 à 11:24:45
+	mais une recherche sur cette IP (via https://who.is) a montré qu'il s'agissait d'un serveur classique appartenant à Microsoft).
+
+
+5. CONCLUSION
+------------------------------------------------------------------------
+Le processus Res.exe a bien été identifié. Le dump 
+mémoire a permis de confirmer sa présence en mémoire.
+Par contre, il n'y a pas de connexions réseaux établies.
+Nous n'avons pas établi de trace de tâches planifiées.
+
+
+
+6-ANNEXE
+------------------------------------------------------------------------
+
+Méthodes utilisées pour analyser le DUMP de la mémoire:
+Outil                : Volatility 3
+Commandes             : 
+		       vol.py -f RAM_DUMP.raw windows.pslist
+		       vol.py -f RAM_DUMP.raw windows.pstree
+		       vol.py -f RAM_DUMP.raw windows.psscan
+		       vol.py -f RAM_DUMP.raw windows.netscan
+		       vol.py -f RAM_DUMP.raw windows.dlllist --pid <processus>
+		       vol.py -f RAM_DUMP.raw windows.handles --pid <processus>
+		       vol.py -f RAM_DUMP.raw windows.cmdline
+
+========================================================================
