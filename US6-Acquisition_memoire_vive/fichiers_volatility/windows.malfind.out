@@ -1,0 +1,302 @@
+Volatility 3 Framework 2.28.2
+
+PID	Process	Start VPN	End VPN	Tag	Protection	CommitCharge	PrivateMemory	File output	Notes	Hexdump	Disasm
+
+2904	MsMpEng.exe	0x1f3a8b70000	0x1f3a8c7cfff	VadS	PAGE_EXECUTE_READWRITE	269	1	Disabled	N/A	
+56 57 53 55 41 54 41 55 41 56 41 57 48 83 ec 28 VWSUATAUAVAWH..(
+4c 8d 3c 24 48 8b e9 48 8d b1 98 38 00 00 ff e2 L.<$H..H...8....
+49 8d 67 28 41 5f 41 5e 41 5d 41 5c 5d 5b 5f 5e I.g(A_A^A]A\][_^
+c3 00 00 40 00 80 00 00 00 48 89 e9 48 b8 60 0c ...@.....H..H.`.	
+0x1f3a8b70000:	push	rsi
+0x1f3a8b70001:	push	rdi
+0x1f3a8b70002:	push	rbx
+0x1f3a8b70003:	push	rbp
+0x1f3a8b70004:	push	r12
+0x1f3a8b70006:	push	r13
+0x1f3a8b70008:	push	r14
+0x1f3a8b7000a:	push	r15
+0x1f3a8b7000c:	sub	rsp, 0x28
+0x1f3a8b70010:	lea	r15, [rsp]
+0x1f3a8b70014:	mov	rbp, rcx
+0x1f3a8b70017:	lea	rsi, [rcx + 0x3898]
+0x1f3a8b7001e:	jmp	rdx
+0x1f3a8b70020:	lea	rsp, [r15 + 0x28]
+0x1f3a8b70024:	pop	r15
+0x1f3a8b70026:	pop	r14
+0x1f3a8b70028:	pop	r13
+0x1f3a8b7002a:	pop	r12
+0x1f3a8b7002c:	pop	rbp
+0x1f3a8b7002d:	pop	rbx
+0x1f3a8b7002e:	pop	rdi
+0x1f3a8b7002f:	pop	rsi
+0x1f3a8b70030:	ret	
+0x1f3a8b70031:	add	byte ptr [rax], al
+0x1f3a8b70033:	add	byte ptr [rax + 0x48000000], al
+0x1f3a8b7003a:	mov	ecx, ebp
+2904	MsMpEng.exe	0x1f3a8c90000	0x1f3a8d9cfff	VadS	PAGE_EXECUTE_READWRITE	269	1	Disabled	N/A	
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................	
+0x1f3a8c90000:	add	byte ptr [rax], al
+0x1f3a8c90002:	add	byte ptr [rax], al
+0x1f3a8c90004:	add	byte ptr [rax], al
+0x1f3a8c90006:	add	byte ptr [rax], al
+0x1f3a8c90008:	add	byte ptr [rax], al
+0x1f3a8c9000a:	add	byte ptr [rax], al
+0x1f3a8c9000c:	add	byte ptr [rax], al
+0x1f3a8c9000e:	add	byte ptr [rax], al
+0x1f3a8c90010:	add	byte ptr [rax], al
+0x1f3a8c90012:	add	byte ptr [rax], al
+0x1f3a8c90014:	add	byte ptr [rax], al
+0x1f3a8c90016:	add	byte ptr [rax], al
+0x1f3a8c90018:	add	byte ptr [rax], al
+0x1f3a8c9001a:	add	byte ptr [rax], al
+0x1f3a8c9001c:	add	byte ptr [rax], al
+0x1f3a8c9001e:	add	byte ptr [rax], al
+0x1f3a8c90020:	add	byte ptr [rax], al
+0x1f3a8c90022:	add	byte ptr [rax], al
+0x1f3a8c90024:	add	byte ptr [rax], al
+0x1f3a8c90026:	add	byte ptr [rax], al
+0x1f3a8c90028:	add	byte ptr [rax], al
+0x1f3a8c9002a:	add	byte ptr [rax], al
+0x1f3a8c9002c:	add	byte ptr [rax], al
+0x1f3a8c9002e:	add	byte ptr [rax], al
+0x1f3a8c90030:	add	byte ptr [rax], al
+0x1f3a8c90032:	add	byte ptr [rax], al
+0x1f3a8c90034:	add	byte ptr [rax], al
+0x1f3a8c90036:	add	byte ptr [rax], al
+0x1f3a8c90038:	add	byte ptr [rax], al
+0x1f3a8c9003a:	add	byte ptr [rax], al
+0x1f3a8c9003c:	add	byte ptr [rax], al
+0x1f3a8c9003e:	add	byte ptr [rax], al
+2904	MsMpEng.exe	0x1f3a8e60000	0x1f3a8f6cfff	VadS	PAGE_EXECUTE_READWRITE	269	1	Disabled	N/A	
+56 57 53 55 41 54 41 55 41 56 41 57 48 83 ec 28 VWSUATAUAVAWH..(
+4c 8d 3c 24 48 8b e9 48 8d b1 98 38 00 00 ff e2 L.<$H..H...8....
+49 8d 67 28 41 5f 41 5e 41 5d 41 5c 5d 5b 5f 5e I.g(A_A^A]A\][_^
+c3 00 00 40 00 80 00 00 00 48 89 e9 48 b8 60 0c ...@.....H..H.`.	
+0x1f3a8e60000:	push	rsi
+0x1f3a8e60001:	push	rdi
+0x1f3a8e60002:	push	rbx
+0x1f3a8e60003:	push	rbp
+0x1f3a8e60004:	push	r12
+0x1f3a8e60006:	push	r13
+0x1f3a8e60008:	push	r14
+0x1f3a8e6000a:	push	r15
+0x1f3a8e6000c:	sub	rsp, 0x28
+0x1f3a8e60010:	lea	r15, [rsp]
+0x1f3a8e60014:	mov	rbp, rcx
+0x1f3a8e60017:	lea	rsi, [rcx + 0x3898]
+0x1f3a8e6001e:	jmp	rdx
+0x1f3a8e60020:	lea	rsp, [r15 + 0x28]
+0x1f3a8e60024:	pop	r15
+0x1f3a8e60026:	pop	r14
+0x1f3a8e60028:	pop	r13
+0x1f3a8e6002a:	pop	r12
+0x1f3a8e6002c:	pop	rbp
+0x1f3a8e6002d:	pop	rbx
+0x1f3a8e6002e:	pop	rdi
+0x1f3a8e6002f:	pop	rsi
+0x1f3a8e60030:	ret	
+0x1f3a8e60031:	add	byte ptr [rax], al
+0x1f3a8e60033:	add	byte ptr [rax + 0x48000000], al
+0x1f3a8e6003a:	mov	ecx, ebp
+2904	MsMpEng.exe	0x1f3aa060000	0x1f3aa16cfff	VadS	PAGE_EXECUTE_READWRITE	269	1	Disabled	N/A	
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................	
+0x1f3aa060000:	add	byte ptr [rax], al
+0x1f3aa060002:	add	byte ptr [rax], al
+0x1f3aa060004:	add	byte ptr [rax], al
+0x1f3aa060006:	add	byte ptr [rax], al
+0x1f3aa060008:	add	byte ptr [rax], al
+0x1f3aa06000a:	add	byte ptr [rax], al
+0x1f3aa06000c:	add	byte ptr [rax], al
+0x1f3aa06000e:	add	byte ptr [rax], al
+0x1f3aa060010:	add	byte ptr [rax], al
+0x1f3aa060012:	add	byte ptr [rax], al
+0x1f3aa060014:	add	byte ptr [rax], al
+0x1f3aa060016:	add	byte ptr [rax], al
+0x1f3aa060018:	add	byte ptr [rax], al
+0x1f3aa06001a:	add	byte ptr [rax], al
+0x1f3aa06001c:	add	byte ptr [rax], al
+0x1f3aa06001e:	add	byte ptr [rax], al
+0x1f3aa060020:	add	byte ptr [rax], al
+0x1f3aa060022:	add	byte ptr [rax], al
+0x1f3aa060024:	add	byte ptr [rax], al
+0x1f3aa060026:	add	byte ptr [rax], al
+0x1f3aa060028:	add	byte ptr [rax], al
+0x1f3aa06002a:	add	byte ptr [rax], al
+0x1f3aa06002c:	add	byte ptr [rax], al
+0x1f3aa06002e:	add	byte ptr [rax], al
+0x1f3aa060030:	add	byte ptr [rax], al
+0x1f3aa060032:	add	byte ptr [rax], al
+0x1f3aa060034:	add	byte ptr [rax], al
+0x1f3aa060036:	add	byte ptr [rax], al
+0x1f3aa060038:	add	byte ptr [rax], al
+0x1f3aa06003a:	add	byte ptr [rax], al
+0x1f3aa06003c:	add	byte ptr [rax], al
+0x1f3aa06003e:	add	byte ptr [rax], al
+2904	MsMpEng.exe	0x1f3aa170000	0x1f3aa27cfff	VadS	PAGE_EXECUTE_READWRITE	269	1	Disabled	N/A	
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................
+__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ................	
+0x1f3aa170000:	add	byte ptr [rax], al
+0x1f3aa170002:	add	byte ptr [rax], al
+0x1f3aa170004:	add	byte ptr [rax], al
+0x1f3aa170006:	add	byte ptr [rax], al
+0x1f3aa170008:	add	byte ptr [rax], al
+0x1f3aa17000a:	add	byte ptr [rax], al
+0x1f3aa17000c:	add	byte ptr [rax], al
+0x1f3aa17000e:	add	byte ptr [rax], al
+0x1f3aa170010:	add	byte ptr [rax], al
+0x1f3aa170012:	add	byte ptr [rax], al
+0x1f3aa170014:	add	byte ptr [rax], al
+0x1f3aa170016:	add	byte ptr [rax], al
+0x1f3aa170018:	add	byte ptr [rax], al
+0x1f3aa17001a:	add	byte ptr [rax], al
+0x1f3aa17001c:	add	byte ptr [rax], al
+0x1f3aa17001e:	add	byte ptr [rax], al
+0x1f3aa170020:	add	byte ptr [rax], al
+0x1f3aa170022:	add	byte ptr [rax], al
+0x1f3aa170024:	add	byte ptr [rax], al
+0x1f3aa170026:	add	byte ptr [rax], al
+0x1f3aa170028:	add	byte ptr [rax], al
+0x1f3aa17002a:	add	byte ptr [rax], al
+0x1f3aa17002c:	add	byte ptr [rax], al
+0x1f3aa17002e:	add	byte ptr [rax], al
+0x1f3aa170030:	add	byte ptr [rax], al
+0x1f3aa170032:	add	byte ptr [rax], al
+0x1f3aa170034:	add	byte ptr [rax], al
+0x1f3aa170036:	add	byte ptr [rax], al
+0x1f3aa170038:	add	byte ptr [rax], al
+0x1f3aa17003a:	add	byte ptr [rax], al
+0x1f3aa17003c:	add	byte ptr [rax], al
+0x1f3aa17003e:	add	byte ptr [rax], al
+2904	MsMpEng.exe	0x1f3f38f0000	0x1f3f39effff	VadS	PAGE_EXECUTE_READWRITE	256	1	Disabled	N/A	
+cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc ................
+cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc ................
+cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc ................
+cc 08 00 42 00 00 00 00 05 48 8b 45 20 48 89 c2 ...B.....H.E H..	
+0x1f3f38f0000:	int3	
+0x1f3f38f0001:	int3	
+0x1f3f38f0002:	int3	
+0x1f3f38f0003:	int3	
+0x1f3f38f0004:	int3	
+0x1f3f38f0005:	int3	
+0x1f3f38f0006:	int3	
+0x1f3f38f0007:	int3	
+0x1f3f38f0008:	int3	
+0x1f3f38f0009:	int3	
+0x1f3f38f000a:	int3	
+0x1f3f38f000b:	int3	
+0x1f3f38f000c:	int3	
+0x1f3f38f000d:	int3	
+0x1f3f38f000e:	int3	
+0x1f3f38f000f:	int3	
+0x1f3f38f0010:	int3	
+0x1f3f38f0011:	int3	
+0x1f3f38f0012:	int3	
+0x1f3f38f0013:	int3	
+0x1f3f38f0014:	int3	
+0x1f3f38f0015:	int3	
+0x1f3f38f0016:	int3	
+0x1f3f38f0017:	int3	
+0x1f3f38f0018:	int3	
+0x1f3f38f0019:	int3	
+0x1f3f38f001a:	int3	
+0x1f3f38f001b:	int3	
+0x1f3f38f001c:	int3	
+0x1f3f38f001d:	int3	
+0x1f3f38f001e:	int3	
+0x1f3f38f001f:	int3	
+0x1f3f38f0020:	int3	
+0x1f3f38f0021:	int3	
+0x1f3f38f0022:	int3	
+0x1f3f38f0023:	int3	
+0x1f3f38f0024:	int3	
+0x1f3f38f0025:	int3	
+0x1f3f38f0026:	int3	
+0x1f3f38f0027:	int3	
+0x1f3f38f0028:	int3	
+0x1f3f38f0029:	int3	
+0x1f3f38f002a:	int3	
+0x1f3f38f002b:	int3	
+0x1f3f38f002c:	int3	
+0x1f3f38f002d:	int3	
+0x1f3f38f002e:	int3	
+0x1f3f38f002f:	int3	
+0x1f3f38f0030:	int3	
+0x1f3f38f0031:	or	byte ptr [rax], al
+0x1f3f38f0033:	add	byte ptr [rax], al
+0x1f3f38f0036:	add	byte ptr [rax], al
+0x1f3f38f0038:	add	eax, 0x20458b48
+0x1f3f38f003d:	mov	rdx, rax
+2904	MsMpEng.exe	0x1f3f39f0000	0x1f3f3beffff	VadS	PAGE_EXECUTE_READWRITE	512	1	Disabled	N/A	
+cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc ................
+cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc ................
+cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc cc ................
+cc 0c 00 4e 00 0c 00 01 05 48 8b 55 28 48 8b 8d ...N.....H.U(H..	
+0x1f3f39f0000:	int3	
+0x1f3f39f0001:	int3	
+0x1f3f39f0002:	int3	
+0x1f3f39f0003:	int3	
+0x1f3f39f0004:	int3	
+0x1f3f39f0005:	int3	
+0x1f3f39f0006:	int3	
+0x1f3f39f0007:	int3	
+0x1f3f39f0008:	int3	
+0x1f3f39f0009:	int3	
+0x1f3f39f000a:	int3	
+0x1f3f39f000b:	int3	
+0x1f3f39f000c:	int3	
+0x1f3f39f000d:	int3	
+0x1f3f39f000e:	int3	
+0x1f3f39f000f:	int3	
+0x1f3f39f0010:	int3	
+0x1f3f39f0011:	int3	
+0x1f3f39f0012:	int3	
+0x1f3f39f0013:	int3	
+0x1f3f39f0014:	int3	
+0x1f3f39f0015:	int3	
+0x1f3f39f0016:	int3	
+0x1f3f39f0017:	int3	
+0x1f3f39f0018:	int3	
+0x1f3f39f0019:	int3	
+0x1f3f39f001a:	int3	
+0x1f3f39f001b:	int3	
+0x1f3f39f001c:	int3	
+0x1f3f39f001d:	int3	
+0x1f3f39f001e:	int3	
+0x1f3f39f001f:	int3	
+0x1f3f39f0020:	int3	
+0x1f3f39f0021:	int3	
+0x1f3f39f0022:	int3	
+0x1f3f39f0023:	int3	
+0x1f3f39f0024:	int3	
+0x1f3f39f0025:	int3	
+0x1f3f39f0026:	int3	
+0x1f3f39f0027:	int3	
+0x1f3f39f0028:	int3	
+0x1f3f39f0029:	int3	
+0x1f3f39f002a:	int3	
+0x1f3f39f002b:	int3	
+0x1f3f39f002c:	int3	
+0x1f3f39f002d:	int3	
+0x1f3f39f002e:	int3	
+0x1f3f39f002f:	int3	
+0x1f3f39f0030:	int3	
+0x1f3f39f0031:	or	al, 0
+0x1f3f39f0033:	add	byte ptr [rax + r8], r9b
+0x1f3f39f0037:	add	dword ptr [rip + 0x28558b48], eax
+5324	RuntimeBroker.	0x22dd1880000	0x22dd188dfff	Vad 	PAGE_EXECUTE_READWRITE	0	0	Disabled	N/A	
+00 00 00 00 00 00 00 00 fe ff ff ff f7 2f 00 00 ............./..
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................	
+0x22dd1880000:	add	byte ptr [rax], al
+0x22dd1880002:	add	byte ptr [rax], al
+0x22dd1880004:	add	byte ptr [rax], al
+0x22dd1880006:	add	byte ptr [rax], al

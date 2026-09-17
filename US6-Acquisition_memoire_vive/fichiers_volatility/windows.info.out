@@ -1,0 +1,24 @@
+Volatility 3 Framework 2.28.2
+
+Variable	Value
+
+Kernel Base	0xf8060c200000
+DTB	0x1ad000
+Symbols	file:///C:/Users/telet/tool_tempo/volatility3/volatility3/symbols/windows/ntkrnlmp.pdb/F57E740B088E5056E8AF0772F1CC5BEB-1.json.xz
+Is64Bit	True
+IsPAE	False
+layer_name	0 WindowsIntel32e
+memory_layer	1 FileLayer
+KdVersionBlock	0xf8060ce0f400
+Major/Minor	15.19041
+MachineType	34404
+KeNumberProcessors	2
+SystemTime	2026-09-16 12:40:21+00:00
+NtSystemRoot	C:\Windows
+NtProductType	NtProductWinNt
+NtMajorVersion	10
+NtMinorVersion	0
+PE MajorOperatingSystemVersion	10
+PE MinorOperatingSystemVersion	0
+PE Machine	34404
+PE TimeDateStamp	Sat Feb  2 23:04:03 1985
