@@ -2,8 +2,8 @@
 EVALUATION DES RISQUES - MALWARE KEYLOGGER "WINDSYST"
 ==================================================================
 Date de l'analyse    : 16/9/2026
-Analyste              : Nicolas-Yohan-Philippe
-Environnement d'analyse : VM isolée (réseau host-only / interne)
+Analyste              : Philippe
+Environnement d'analyse : VM en mode réseau NAT (préféré au mode "host-only" car malware a été rendu inoffensif)
 Outils utilisés       : Procmon, TCPView, Process Explorer, Wireshark
 
 ------------------------------------------------------------------
@@ -24,16 +24,17 @@ Comportement observé :
     * Traduction en chaînes lisibles (sub_401ed0)
     * Écriture des données capturées dans C:\WindSyst\log.txt
 
-Je n'ai pas trouvé de 
-    * Persistance via la clé de registre
+*Persistance: 
+Copie dans le répertoire C:\WindSyst d'un ensemble de fichiers dont des dll.
+Je n'ai pas trouvé de persistance par contre via la clé de registre
       HKCU\Software\Microsoft\Windows\CurrentVersion\Run
       (entrées nommées "Res" et "Env")
 
 Résultat de la capture réseau (Wireshark) :
 - Aucune tentative d'exfiltration réseau constatée durant la
-  période d'observation (10-15 min, activité clavier générée)
+  période d'observation (15 min avec une activité clavier)
 - Les données capturées semblent rester stockées localement
-  dans log.txt, sans transmission externe identifiée
+  dans C:\WindSyst\log.txt, sans transmission externe identifiée.
 
 ------------------------------------------------------------------
 2. INDICATEURS DE COMPROMISSION (IOC)
@@ -41,7 +42,7 @@ Résultat de la capture réseau (Wireshark) :
 - Répertoire      : C:\WindSyst
 - Fichier de log  : C:\WindSyst\log.txt
 
-Je n'ai pas trouvé de clé de registre auxquelles je m'attendais du type:
+Je n'ai pas trouvé de clés de registre auxquelles je m'attendais du type:
 - Clé de registre : HKCU\Software\Microsoft\Windows\CurrentVersion\Run
     - Valeur "Res" -> C:\WindSyst\Res.exe
     - Valeur "Env" -> C:\WindSyst\Env.exe
@@ -100,8 +101,8 @@ NIVEAU DE RISQUE GLOBAL : MOYEN A ELEVE
 ------------------------------------------------------------------
 Détection :
   - Déployer une règle EDR/antivirus basée sur les IOC identifiés
-    (chemin C:\WindSyst, fichier log.txt, clés de registre
-    Res/Env sous HKCU\...\Run)
+    (chemin C:\WindSyst, fichier log.txt, et préventivement sur les clés de registre
+    Res/Env sous HKCU\Software\Microsoft\Windows\CurrentVersion\Run)
   - Mettre en place une surveillance des modifications de la clé
     Run (Sysmon + règle SIEM, event ID 13)
 
@@ -163,7 +164,7 @@ Hypothèse retenue : mécanisme de redondance / watchdog mutuel
   copie restaurant la première.
 
 Méthode de vérification proposée :
-  1. Comparer les empreintes (MD5/SHA256) de Res.exe et Env.exe
+  1. Comparer les empreintes (SHA256) de Res.exe et Env.exe
      -> hashs identiques = confirme une copie strictement
         identique du même binaire
   2. Comparer la taille des fichiers et un extrait de strings
